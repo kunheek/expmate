@@ -558,15 +558,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pytorch-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      PyTorch Support
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#experiment-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       Experiment Tracking
@@ -576,36 +567,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#visualization-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Visualization Tools
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#system-monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      System Monitoring
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#development-tools" class="md-nav__link">
     <span class="md-ellipsis">
       Development Tools
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#all-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      All Dependencies
     </span>
   </a>
   
@@ -1328,15 +1292,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pytorch-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      PyTorch Support
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#experiment-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       Experiment Tracking
@@ -1346,36 +1301,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#visualization-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Visualization Tools
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#system-monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      System Monitoring
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#development-tools" class="md-nav__link">
     <span class="md-ellipsis">
       Development Tools
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#all-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      All Dependencies
     </span>
   </a>
   
@@ -1441,36 +1369,16 @@
 </code></pre></div>
 <p>This installs the core package with minimal dependencies (PyYAML and NumPy).</p>
 <h2 id="optional-dependencies">Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permanent link">&para;</a></h2>
-<p>ExpMate provides several optional dependency groups for different use cases:</p>
-<h3 id="pytorch-support">PyTorch Support<a class="headerlink" href="#pytorch-support" title="Permanent link">&para;</a></h3>
-<p>For PyTorch-specific features like checkpoint management and DDP utilities:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>torch<span class="o">]</span>
-</code></pre></div>
-<p>This includes:
-- <code>torch&gt;=1.12.0</code></p>
 <h3 id="experiment-tracking">Experiment Tracking<a class="headerlink" href="#experiment-tracking" title="Permanent link">&para;</a></h3>
 <p>For integration with Weights &amp; Biases and TensorBoard:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>tracking<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>tracking<span class="o">]</span>
 </code></pre></div>
 <p>This includes:
 - <code>wandb&gt;=0.15.0</code>
 - <code>tensorboard&gt;=2.13.0</code></p>
-<h3 id="visualization-tools">Visualization Tools<a class="headerlink" href="#visualization-tools" title="Permanent link">&para;</a></h3>
-<p>For CLI visualization and comparison tools:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>viz<span class="o">]</span>
-</code></pre></div>
-<p>This includes:
-- <code>matplotlib&gt;=3.5.0</code>
-- <code>polars&gt;=0.20.0</code></p>
-<h3 id="system-monitoring">System Monitoring<a class="headerlink" href="#system-monitoring" title="Permanent link">&para;</a></h3>
-<p>For tracking system resources during training:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>monitor<span class="o">]</span>
-</code></pre></div>
-<p>This includes:
-- <code>psutil&gt;=5.9.0</code></p>
 <h3 id="development-tools">Development Tools<a class="headerlink" href="#development-tools" title="Permanent link">&para;</a></h3>
 <p>For contributing to ExpMate:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>dev<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>dev<span class="o">]</span>
 </code></pre></div>
 <p>This includes:
 - <code>pytest&gt;=7.0.0</code>
@@ -1479,25 +1387,18 @@
 - <code>ruff&gt;=0.1.0</code>
 - <code>mypy&gt;=1.0.0</code>
 - <code>pre-commit&gt;=3.0.0</code></p>
-<h3 id="all-dependencies">All Dependencies<a class="headerlink" href="#all-dependencies" title="Permanent link">&para;</a></h3>
-<p>To install everything:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>all<span class="o">]</span>
-</code></pre></div>
 <h2 id="install-from-source">Install from Source<a class="headerlink" href="#install-from-source" title="Permanent link">&para;</a></h2>
 <p>To install from source (for development or latest features):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kunheek/expmate.git
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>expmate
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</code></pre></div>
-<p>With optional dependencies:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[all]&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kunheek/expmate.git
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>expmate
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </code></pre></div>
 <h2 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h2>
 <p>Verify the installation by checking the version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import expmate; print(expmate.__version__)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import expmate; print(expmate.__version__)&quot;</span>
 </code></pre></div>
 <p>Or use the CLI:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>expmate<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>expmate<span class="w"> </span>--version
 </code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
