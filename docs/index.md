@@ -74,4 +74,4 @@ pip install expmate[all]
 
 - **GitHub**: [kunheek/expmate](https://github.com/kunheek/expmate)
 - **Issues**: [Issue Tracker](https://github.com/kunheek/expmate/issues)
-- **Email**: kunheek@gmail.com
+- **Email**: kunhee.kim@kaist.ac.kr

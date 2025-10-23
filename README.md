@@ -342,7 +342,7 @@ ExpMate was created to simplify ML research workflows. Special thanks to the ope
 ## 📞 Contact
 
 - **Author**: Kunhee Kim
-- **Email**: kunheek@gmail.com
+- **Email**: kunhee.kim@kaist.ac.kr
 - **GitHub**: [kunheek/expmate](https://github.com/kunheek/expmate)
 
 ## 🔗 Links

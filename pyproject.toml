@@ -9,7 +9,7 @@ description = "ML Research Boilerplate — Config & Logging First"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-  {name = "Kunhee Kim", email = "kunheek@gmail.com"}
+  {name = "Kunhee Kim", email = "kunhee.kim@kaist.ac.kr"}
 ]
 keywords = [
   "machine-learning",
