@@ -22,27 +22,42 @@ ExpMate is a lightweight experiment management toolkit designed for ML researche
 
 ### Basic Installation
 
+Install ExpMate with all core features:
+
 ```bash
 pip install expmate
 ```
 
-### With Optional Dependencies
+**What's included:**
+- ✅ **Configuration parser** - YAML configs with CLI overrides
+- ✅ **Experiment logger** - Structured logging and metrics tracking
+- ✅ **CLI tools** - `compare`, `visualize`, `sweep` commands
+- ✅ **Visualization** - Plot metrics with matplotlib
+- ✅ **Data analysis** - Fast data processing with polars
+- ✅ **System monitoring** - Track CPU/memory usage with psutil
+
+### Optional: Experiment Tracking
+
+Add integration with popular tracking platforms:
 
 ```bash
-# For PyTorch support
-pip install expmate[torch]
+# Weights & Biases only
+pip install expmate[wandb]
 
-# For experiment tracking (WandB, TensorBoard)
+# TensorBoard only
+pip install expmate[tensorboard]
+
+# Both tracking platforms
 pip install expmate[tracking]
+```
 
-# For visualization and comparison tools
-pip install expmate[viz]
+### Using with PyTorch
 
-# For system monitoring
-pip install expmate[monitor]
+ExpMate works great with PyTorch! **Install PyTorch separately:**
 
-# Install everything
-pip install expmate[all]
+```bash
+pip install expmate
+pip install torch torchvision  # Install PyTorch your way
 ```
 
 ## 🚀 Quick Start
@@ -65,7 +80,7 @@ logger.info(f"Starting experiment: {config.run_id}")
 # Your training code here...
 for epoch in range(config.training.epochs):
     # ... training logic ...
-    
+
     # Log metrics
     logger.log_metric(step=epoch, split='train', name='loss', value=loss)
     logger.info(f"Epoch {epoch}: loss={loss:.4f}")

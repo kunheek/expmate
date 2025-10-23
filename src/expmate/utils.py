@@ -22,15 +22,6 @@ def set_seed(seed: int):
     except ImportError:
         pass
 
-    # JAX if available
-    try:
-        import jax
-
-        jax.config.update("jax_enable_x64", True)
-        # JAX random key needs to be managed per use
-    except ImportError:
-        pass
-
 
 def get_gpu_devices(requested: Optional[str] = None) -> List[int]:
     """Get list of GPU device IDs, respecting CUDA_VISIBLE_DEVICES."""

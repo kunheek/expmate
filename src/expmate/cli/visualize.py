@@ -1,7 +1,9 @@
 import argparse
+import json
 from pathlib import Path
 from typing import List, Optional, Union
 
+import matplotlib.pyplot as plt
 import polars as pl
 
 
@@ -21,12 +23,6 @@ def plot_metrics(
         show: Whether to display the plot
         style: Plot style ('default', 'seaborn', 'ggplot')
     """
-    try:
-        import matplotlib.pyplot as plt
-    except ImportError:
-        print("❌ matplotlib not installed. Install with: pip install matplotlib")
-        return
-
     # Handle single run_dir
     if isinstance(run_dirs, (str, Path)):
         run_dirs = [run_dirs]
@@ -132,14 +128,6 @@ def plot_resource_usage(
         output_file: Save plot to file
         show: Whether to display the plot
     """
-    try:
-        import json
-
-        import matplotlib.pyplot as plt
-    except ImportError:
-        print("❌ matplotlib not installed")
-        return
-
     run_dir = Path(run_dir)
     resource_file = run_dir / "resource_usage.jsonl"
 

@@ -6,10 +6,7 @@ import time
 from pathlib import Path
 from typing import Dict, Optional
 
-try:
-    import psutil
-except ImportError:
-    psutil = None
+import psutil
 
 try:
     import torch
@@ -96,29 +93,23 @@ class ResourceMonitor:
         # CPU stats
         if self.track_cpu:
             try:
-                if psutil is not None:
-                    stats["cpu"] = {
-                        "percent": psutil.cpu_percent(interval=0.1),
-                        "count": psutil.cpu_count(),
-                    }
-                else:
-                    stats["cpu_error"] = "psutil not installed"
+                stats["cpu"] = {
+                    "percent": psutil.cpu_percent(interval=0.1),
+                    "count": psutil.cpu_count(),
+                }
             except Exception as e:
                 stats["cpu_error"] = str(e)
 
         # Memory stats
         if self.track_memory:
             try:
-                if psutil is not None:
-                    mem = psutil.virtual_memory()
-                    stats["memory"] = {
-                        "total_gb": mem.total / 1e9,
-                        "available_gb": mem.available / 1e9,
-                        "used_gb": mem.used / 1e9,
-                        "percent": mem.percent,
-                    }
-                else:
-                    stats["memory_error"] = "psutil not installed"
+                mem = psutil.virtual_memory()
+                stats["memory"] = {
+                    "total_gb": mem.total / 1e9,
+                    "available_gb": mem.available / 1e9,
+                    "used_gb": mem.used / 1e9,
+                    "percent": mem.percent,
+                }
             except Exception as e:
                 stats["memory_error"] = str(e)
 
@@ -254,9 +245,8 @@ def log_system_info(run_dir: Path):
         info["pytorch_installed"] = False
 
     # System info
-    if psutil is not None:
-        info["cpu_count"] = psutil.cpu_count()
-        info["memory_total_gb"] = psutil.virtual_memory().total / 1e9
+    info["cpu_count"] = psutil.cpu_count()
+    info["memory_total_gb"] = psutil.virtual_memory().total / 1e9
 
     # Hostname
     info["hostname"] = socket.gethostname()
