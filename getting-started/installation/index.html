@@ -1367,15 +1367,25 @@
 <p>Install ExpMate using pip:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate
 </code></pre></div>
-<p>This installs the core package with minimal dependencies (PyYAML and NumPy).</p>
+<p>This installs the core package with all essential dependencies:
+- ✅ <strong>Configuration parser</strong> - YAML configs with CLI overrides (pyyaml)
+- ✅ <strong>Experiment logger</strong> - Structured logging and metrics tracking (numpy)
+- ✅ <strong>CLI tools</strong> - <code>compare</code>, <code>visualize</code>, <code>sweep</code> commands
+- ✅ <strong>Visualization</strong> - Plot metrics with matplotlib
+- ✅ <strong>Data analysis</strong> - Fast data processing with polars
+- ✅ <strong>System monitoring</strong> - Track CPU/memory usage with psutil</p>
 <h2 id="optional-dependencies">Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permanent link">&para;</a></h2>
 <h3 id="experiment-tracking">Experiment Tracking<a class="headerlink" href="#experiment-tracking" title="Permanent link">&para;</a></h3>
 <p>For integration with Weights &amp; Biases and TensorBoard:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>tracking<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Weights &amp; Biases only</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>wandb<span class="o">]</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># TensorBoard only</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>tensorboard<span class="o">]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Both tracking platforms</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>tracking<span class="o">]</span>
 </code></pre></div>
-<p>This includes:
-- <code>wandb&gt;=0.15.0</code>
-- <code>tensorboard&gt;=2.13.0</code></p>
 <h3 id="development-tools">Development Tools<a class="headerlink" href="#development-tools" title="Permanent link">&para;</a></h3>
 <p>For contributing to ExpMate:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>dev<span class="o">]</span>

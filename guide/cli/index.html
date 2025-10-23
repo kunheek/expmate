@@ -879,27 +879,45 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#grid-search" class="md-nav__link">
+  <a href="#basic-grid-search" class="md-nav__link">
     <span class="md-ellipsis">
-      Grid Search
+      Basic Grid Search
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#random-search" class="md-nav__link">
+  <a href="#with-distributed-training" class="md-nav__link">
     <span class="md-ellipsis">
-      Random Search
+      With Distributed Training
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#options_2" class="md-nav__link">
+  <a href="#sweep-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Options
+      Sweep Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-value-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Value Types
     </span>
   </a>
   
@@ -909,6 +927,15 @@
   <a href="#example-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Example Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Structure
     </span>
   </a>
   
@@ -935,27 +962,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#compare-runs_1" class="md-nav__link">
+  <a href="#generate-sweep-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Compare Runs
+      Generate Sweep Configurations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#visualize-metrics_1" class="md-nav__link">
+  <a href="#run-sweep" class="md-nav__link">
     <span class="md-ellipsis">
-      Visualize Metrics
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-sweep" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generate Sweep
+      Run Sweep
     </span>
   </a>
   
@@ -1551,27 +1569,45 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#grid-search" class="md-nav__link">
+  <a href="#basic-grid-search" class="md-nav__link">
     <span class="md-ellipsis">
-      Grid Search
+      Basic Grid Search
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#random-search" class="md-nav__link">
+  <a href="#with-distributed-training" class="md-nav__link">
     <span class="md-ellipsis">
-      Random Search
+      With Distributed Training
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#options_2" class="md-nav__link">
+  <a href="#sweep-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Options
+      Sweep Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-value-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Value Types
     </span>
   </a>
   
@@ -1581,6 +1617,15 @@
   <a href="#example-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Example Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Structure
     </span>
   </a>
   
@@ -1607,27 +1652,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#compare-runs_1" class="md-nav__link">
+  <a href="#generate-sweep-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Compare Runs
+      Generate Sweep Configurations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#visualize-metrics_1" class="md-nav__link">
+  <a href="#run-sweep" class="md-nav__link">
     <span class="md-ellipsis">
-      Visualize Metrics
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-sweep" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generate Sweep
+      Run Sweep
     </span>
   </a>
   
@@ -1711,8 +1747,8 @@
 <h1 id="cli-tools">CLI Tools<a class="headerlink" href="#cli-tools" title="Permanent link">&para;</a></h1>
 <p>ExpMate provides command-line tools for experiment management and analysis.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>CLI tools are available after installing ExpMate:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate<span class="o">[</span>viz<span class="o">]</span><span class="w">  </span><span class="c1"># For visualization features</span>
+<p>CLI tools are included with the base installation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>expmate
 </code></pre></div>
 <p>Verify installation:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>expmate<span class="w"> </span>--help
@@ -1793,147 +1829,171 @@
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span>--output<span class="w"> </span>learning_rate_comparison.png
 </code></pre></div>
 <h3 id="hyperparameter-sweeps">Hyperparameter Sweeps<a class="headerlink" href="#hyperparameter-sweeps" title="Permanent link">&para;</a></h3>
-<p>Run systematic hyperparameter searches.</p>
-<h4 id="grid-search">Grid Search<a class="headerlink" href="#grid-search" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>--param<span class="w"> </span>model.hidden_dim<span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>--script<span class="w"> </span>train.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>--runs-dir<span class="w"> </span>sweeps/grid
+<p>Run systematic hyperparameter searches with grid search.</p>
+<h4 id="basic-grid-search">Basic Grid Search<a class="headerlink" href="#basic-grid-search" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Basic sweep - creates all combinations</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;python train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="s2">&quot;training.lr=[0.001,0.01,0.1]&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">          </span><span class="s2">&quot;model.hidden_dim=[128,256,512]&quot;</span>
 </code></pre></div>
-<p>This creates 3 × 3 = 9 runs with all combinations.</p>
-<h4 id="random-search">Random Search<a class="headerlink" href="#random-search" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.001:0.1:log<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>--param<span class="w"> </span>training.dropout<span class="w"> </span><span class="m">0</span>.1:0.5<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span>--param<span class="w"> </span>model.hidden_dim<span class="w"> </span><span class="m">128</span>:512:int<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span>--num-samples<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span>--mode<span class="w"> </span>random<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span>--script<span class="w"> </span>train.py
+<p>This creates 3 × 3 = 9 runs with all combinations of the parameters.</p>
+<p>The <code>{config}</code> placeholder is replaced with the path to each generated config file.</p>
+<h4 id="with-distributed-training">With Distributed Training<a class="headerlink" href="#with-distributed-training" title="Permanent link">&para;</a></h4>
+<p>Use <code>torchrun</code> in the command template:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;torchrun --nproc_per_node=4 train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="s2">&quot;training.lr=[0.001,0.01,0.1]&quot;</span>
 </code></pre></div>
-<p>Parameter syntax:
-- <code>min:max</code>: Uniform distribution
-- <code>min:max:log</code>: Log-uniform distribution
-- <code>min:max:int</code>: Integer uniform distribution</p>
-<h4 id="options_2">Options<a class="headerlink" href="#options_2" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Parallel execution</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span>--script<span class="w"> </span>train.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span>--parallel<span class="w"> </span><span class="m">4</span><span class="w">  </span><span class="c1"># Run 4 experiments in parallel</span>
+<h4 id="sweep-options">Sweep Options<a class="headerlink" href="#sweep-options" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Custom sweep name</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;python train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--name<span class="w"> </span>my_lr_sweep<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="s2">&quot;training.lr=[0.001,0.01,0.1]&quot;</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># GPU assignment</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span>--script<span class="w"> </span>train.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span>--gpus<span class="w"> </span><span class="m">0</span>,1,2,3<span class="w">  </span><span class="c1"># Distribute across GPUs</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Custom runs directory</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;python train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span>--runs-dir<span class="w"> </span>sweeps/experiments<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="s2">&quot;training.lr=[0.001,0.01,0.1]&quot;</span>
 <a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># Resume interrupted sweep</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">    </span>--script<span class="w"> </span>train.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span>--resume<span class="w"> </span>sweeps/grid
-<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>
-<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="c1"># Dry run (print commands without executing)</span>
-<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">    </span>--script<span class="w"> </span>train.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span>--dry-run
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># Dry run (preview commands without running)</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;python train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="s2">&quot;training.lr=[0.001,0.01,0.1]&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span>--dry-run
+</code></pre></div>
+<h4 id="multiple-parameters">Multiple Parameters<a class="headerlink" href="#multiple-parameters" title="Permanent link">&para;</a></h4>
+<p>Sweep over multiple parameters:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;python train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="s2">&quot;training.lr=[0.0001,0.001,0.01]&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="s2">&quot;training.weight_decay=[0,0.0001,0.001]&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="s2">&quot;model.dropout=[0.1,0.2,0.3]&quot;</span>
+</code></pre></div>
+<p>This creates 3 × 3 × 3 = 27 runs.</p>
+<h4 id="parameter-value-types">Parameter Value Types<a class="headerlink" href="#parameter-value-types" title="Permanent link">&para;</a></h4>
+<p>The sweep command automatically detects types:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Floats</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>--sweep<span class="w"> </span><span class="s2">&quot;training.lr=[0.001,0.01,0.1]&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Integers</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>--sweep<span class="w"> </span><span class="s2">&quot;model.hidden_dim=[128,256,512]&quot;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Strings</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>--sweep<span class="w"> </span><span class="s2">&quot;model.activation=[relu,gelu,silu]&quot;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># Booleans</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>--sweep<span class="w"> </span><span class="s2">&quot;training.use_amp=[true,false]&quot;</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="c1"># Mixed types</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>--sweep<span class="w"> </span><span class="s2">&quot;training.batch_size=[16,32,64]&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">        </span><span class="s2">&quot;optimizer.name=[adam,sgd,adamw]&quot;</span>
 </code></pre></div>
 <h4 id="example-workflow">Example Workflow<a class="headerlink" href="#example-workflow" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 1. Run hyperparameter sweep</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>expmate<span class="w"> </span>sweep<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span>--param<span class="w"> </span>training.lr<span class="w"> </span><span class="m">0</span>.0001<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span>--param<span class="w"> </span>training.weight_decay<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.0001<span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span>--script<span class="w"> </span>train.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span>--runs-dir<span class="w"> </span>sweeps/lr_wd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span>--parallel<span class="w"> </span><span class="m">3</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># 2. Compare results</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>expmate<span class="w"> </span>compare<span class="w"> </span>sweeps/lr_wd/exp_*<span class="w"> </span>--output<span class="w"> </span>sweep_results.csv
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># 3. Visualize best runs</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>expmate<span class="w"> </span>viz<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">    </span>sweeps/lr_wd/exp_001<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span>sweeps/lr_wd/exp_004<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span>sweeps/lr_wd/exp_007<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">    </span>--metrics<span class="w"> </span>val_loss<span class="w"> </span>val_accuracy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 1. Run hyperparameter sweep</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>expmate<span class="w"> </span>sweep<span class="w"> </span><span class="s2">&quot;python train.py {config}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>--config<span class="w"> </span>config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--name<span class="w"> </span>lr_wd_sweep<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--runs-dir<span class="w"> </span>sweeps/lr_wd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>--sweep<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="s2">&quot;training.lr=[0.0001,0.001,0.01]&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="s2">&quot;training.weight_decay=[0,0.0001,0.001]&quot;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1"># 2. Compare results</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>expmate<span class="w"> </span>compare<span class="w"> </span>sweeps/lr_wd/exp_*<span class="w"> </span>--output<span class="w"> </span>sweep_results.csv
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="c1"># 3. Visualize best runs</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>expmate<span class="w"> </span>viz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span>sweeps/lr_wd/exp_000<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span>sweeps/lr_wd/exp_004<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">    </span>sweeps/lr_wd/exp_008<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">    </span>--metrics<span class="w"> </span>val_loss<span class="w"> </span>val_accuracy
+</code></pre></div>
+<h4 id="output-structure">Output Structure<a class="headerlink" href="#output-structure" title="Permanent link">&para;</a></h4>
+<p>Each sweep creates a directory structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sweeps/lr_wd_sweep_20250123_143022/
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>├── sweep_info.json           # Sweep configuration and metadata
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├── exp_000/
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│   ├── config.yaml           # Generated config for this run
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│   ├── run.yaml              # Full config after execution
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│   ├── exp.log               # Logs
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│   └── metrics.csv           # Metrics
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>├── exp_001/
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│   └── ...
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>└── exp_008/
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    └── ...
 </code></pre></div>
 <h2 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link">&para;</a></h2>
 <p>You can also use CLI functionality from Python:</p>
-<h3 id="compare-runs_1">Compare Runs<a class="headerlink" href="#compare-runs_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.compare</span><span class="w"> </span><span class="kn">import</span> <span class="n">compare_runs</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">compare_runs</span><span class="p">(</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">run_dirs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;runs/exp1&#39;</span><span class="p">,</span> <span class="s1">&#39;runs/exp2&#39;</span><span class="p">,</span> <span class="s1">&#39;runs/exp3&#39;</span><span class="p">],</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;accuracy&#39;</span><span class="p">],</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="n">show_config</span><span class="o">=</span><span class="kc">True</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">)</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<h3 id="generate-sweep-configurations">Generate Sweep Configurations<a class="headerlink" href="#generate-sweep-configurations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.sweep</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_sweep_configs</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># Generate all configurations for a grid search</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">configs</span> <span class="o">=</span> <span class="n">generate_sweep_configs</span><span class="p">(</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">base_config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">},</span> <span class="s1">&#39;training&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}},</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">sweep_params</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="s1">&#39;training.lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="s1">&#39;model.hidden_dim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">]</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="p">}</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="p">)</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="c1"># Returns list of 9 configurations with all combinations</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">configs</span><span class="p">):</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Config </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: lr=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;training&#39;</span><span class="p">][</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, &quot;</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>          <span class="sa">f</span><span class="s2">&quot;hidden_dim=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;hidden_dim&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="visualize-metrics_1">Visualize Metrics<a class="headerlink" href="#visualize-metrics_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_metrics</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">plot_metrics</span><span class="p">(</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">run_dirs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;runs/exp1&#39;</span><span class="p">,</span> <span class="s1">&#39;runs/exp2&#39;</span><span class="p">],</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;accuracy&#39;</span><span class="p">],</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;comparison.png&#39;</span><span class="p">,</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">style</span><span class="o">=</span><span class="s1">&#39;seaborn&#39;</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">)</span>
-</code></pre></div>
-<h3 id="generate-sweep">Generate Sweep<a class="headerlink" href="#generate-sweep" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.sweep</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_sweep_configs</span><span class="p">,</span> <span class="n">run_sweep</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># Generate configurations</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">configs</span> <span class="o">=</span> <span class="n">generate_sweep_configs</span><span class="p">(</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">base_config_file</span><span class="o">=</span><span class="s1">&#39;config.yaml&#39;</span><span class="p">,</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="s1">&#39;training.lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="s1">&#39;model.hidden_dim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">]</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="p">}</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="p">)</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="c1"># Run sweep</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="n">run_sweep</span><span class="p">(</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="n">script</span><span class="o">=</span><span class="s1">&#39;train.py&#39;</span><span class="p">,</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="n">configs</span><span class="o">=</span><span class="n">configs</span><span class="p">,</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>    <span class="n">runs_dir</span><span class="o">=</span><span class="s1">&#39;sweeps/grid&#39;</span><span class="p">,</span>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>    <span class="n">parallel</span><span class="o">=</span><span class="mi">4</span>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="p">)</span>
+<h3 id="run-sweep">Run Sweep<a class="headerlink" href="#run-sweep" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.sweep</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_sweep</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1"># Run the sweep</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">run_sweep</span><span class="p">(</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">command_template</span><span class="o">=</span><span class="s2">&quot;python train.py </span><span class="si">{config}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">sweep_params</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>        <span class="s1">&#39;training.lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>        <span class="s1">&#39;model.hidden_dim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">]</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>    <span class="p">},</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="n">base_config_file</span><span class="o">=</span><span class="s1">&#39;config.yaml&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="n">sweep_name</span><span class="o">=</span><span class="s1">&#39;my_sweep&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>    <span class="n">runs_dir</span><span class="o">=</span><span class="s1">&#39;sweeps&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># Set True to preview without running</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="p">)</span>
 </code></pre></div>
 <h2 id="advanced-usage">Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permanent link">&para;</a></h2>
 <h3 id="custom-analysis-scripts">Custom Analysis Scripts<a class="headerlink" href="#custom-analysis-scripts" title="Permanent link">&para;</a></h3>
 <p>Combine CLI tools with custom analysis:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.compare</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_run_info</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Load all runs</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_run_info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;runs/</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;runs&#39;</span><span class="p">)]</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Filter runs by config</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">high_lr_runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">][</span><span class="s1">&#39;training&#39;</span><span class="p">][</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">]</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1"># Analyze</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="s1">&#39;run_id&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;run_id&#39;</span><span class="p">],</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">][</span><span class="s1">&#39;training&#39;</span><span class="p">][</span><span class="s1">&#39;lr&#39;</span><span class="p">],</span>
-<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="s1">&#39;best_loss&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;best_metrics&#39;</span><span class="p">][</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="p">}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">high_lr_runs</span><span class="p">])</span>
-<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
-<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;best_loss&#39;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expmate.cli.compare</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_run_info</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># Load all runs</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_run_info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;runs/</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;runs&#39;</span><span class="p">)]</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># Filter runs by config</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">high_lr_runs</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">][</span><span class="s1">&#39;training&#39;</span><span class="p">][</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">]</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="c1"># Analyze</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    <span class="s1">&#39;run_id&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;run_id&#39;</span><span class="p">],</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">][</span><span class="s1">&#39;training&#39;</span><span class="p">][</span><span class="s1">&#39;lr&#39;</span><span class="p">],</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    <span class="s1">&#39;best_loss&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;best_metrics&#39;</span><span class="p">][</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="p">}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">high_lr_runs</span><span class="p">])</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;best_loss&#39;</span><span class="p">))</span>
 </code></pre></div>
 <h3 id="integration-with-other-tools">Integration with Other Tools<a class="headerlink" href="#integration-with-other-tools" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Export to pandas for analysis</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>expmate<span class="w"> </span>compare<span class="w"> </span>runs/exp_*<span class="w"> </span>--output<span class="w"> </span>results.csv
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>python<span class="w"> </span>analyze.py<span class="w"> </span>results.csv
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># Generate plots for reports</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>expmate<span class="w"> </span>viz<span class="w"> </span>runs/exp_*<span class="w"> </span>--output<span class="w"> </span>figure1.png
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>expmate<span class="w"> </span>viz<span class="w"> </span>runs/exp_*<span class="w"> </span>--metrics<span class="w"> </span>accuracy<span class="w"> </span>--output<span class="w"> </span>figure2.png
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="c1"># Create summary report</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>expmate<span class="w"> </span>compare<span class="w"> </span>runs/exp_*<span class="w"> </span>&gt;<span class="w"> </span>results.txt
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>cat<span class="w"> </span>results.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Export to pandas for analysis</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>expmate<span class="w"> </span>compare<span class="w"> </span>runs/exp_*<span class="w"> </span>--output<span class="w"> </span>results.csv
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>python<span class="w"> </span>analyze.py<span class="w"> </span>results.csv
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="c1"># Generate plots for reports</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>expmate<span class="w"> </span>viz<span class="w"> </span>runs/exp_*<span class="w"> </span>--output<span class="w"> </span>figure1.png
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>expmate<span class="w"> </span>viz<span class="w"> </span>runs/exp_*<span class="w"> </span>--metrics<span class="w"> </span>accuracy<span class="w"> </span>--output<span class="w"> </span>figure2.png
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="c1"># Create summary report</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>expmate<span class="w"> </span>compare<span class="w"> </span>runs/exp_*<span class="w"> </span>&gt;<span class="w"> </span>results.txt
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>cat<span class="w"> </span>results.txt
 </code></pre></div>
 <h2 id="tips">Tips<a class="headerlink" href="#tips" title="Permanent link">&para;</a></h2>
 <ol>
