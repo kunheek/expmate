@@ -1,0 +1,25 @@
+# ExpMate Default Configuration
+
+# Run identification
+run_id: "exp_${now:%Y%m%d_%H%M%S}"
+seed: 42
+
+# Model configuration
+model:
+  input_dim: 10
+  hidden_dim: 128
+  output_dim: 2
+
+# Data configuration
+data:
+  train_samples: 1000
+  val_samples: 200
+
+# Training configuration
+training:
+  epochs: 10
+  batch_size: 32
+  lr: 0.001
+
+# Experiment metadata
+description: "Default configuration for ExpMate examples"

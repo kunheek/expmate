@@ -1,0 +1,27 @@
+# Configuration for DDP training example
+
+# Run identification
+run_id: "exp_${now:%Y%m%d_%H%M%S}"  # Auto-generate with timestamp
+seed: 42
+
+# Model architecture
+model:
+  input_dim: 128
+  hidden_dim: 256
+  output_dim: 10
+
+# Data configuration
+data:
+  num_train_samples: 1000
+  num_val_samples: 200
+  batch_size: 32
+
+# Training configuration
+training:
+  epochs: 5
+  lr: 0.001
+
+# Experiment metadata
+experiment:
+  name: "ddp_example"
+  description: "DDP training example with torchrun"
