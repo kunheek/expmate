@@ -47,21 +47,23 @@ for epoch in range(config.training.epochs):
 pip install expmate
 ```
 
-For additional features:
+For optional tracking platforms:
 
 ```bash
-# PyTorch support
-pip install expmate[torch]
+# Weights & Biases
+pip install expmate[wandb]
 
-# Experiment tracking (WandB, TensorBoard)
+# TensorBoard
+pip install expmate[tensorboard]
+
+# Both tracking platforms
 pip install expmate[tracking]
 
-# Visualization tools
-pip install expmate[viz]
-
-# Everything
-pip install expmate[all]
+# Development tools
+pip install expmate[dev]
 ```
+
+**Note**: PyTorch is not bundled. Install it separately based on your system requirements.
 
 ## Next Steps
 

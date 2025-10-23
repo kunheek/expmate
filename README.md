@@ -115,8 +115,9 @@ python train.py config.yaml
 # Override parameters
 python train.py config.yaml training.lr=0.01 training.epochs=20
 
-# Add new parameters
+# Add new keys
 python train.py config.yaml +optimizer.weight_decay=0.0001
+python train.py config.yaml +description="Testing new implementation"
 
 # Type hints for ambiguous values
 python train.py config.yaml training.lr:float=1e-3
@@ -126,19 +127,66 @@ python train.py config.yaml training.lr:float=1e-3
 
 ### Configuration Parser
 
-ExpMate provides a powerful configuration system with automatic type inference and CLI overrides:
+ExpMate provides a powerful configuration system with [Hydra](https://github.com/facebookresearch/hydra)-style overrides, automatic type inference, and flexible list handling:
 
 ```python
-from expmate import ConfigArgumentParser
+from expmate import parse_config
 
-parser = ConfigArgumentParser()
-parser.add_argument("--config", type=str, required=True)
-parser.add_argument("--model-type", type=str, default="resnet")
-config = parser.parse_config()
+# Parse config file (first positional argument) with CLI overrides
+config = parse_config()
 
 # Access nested config values
 print(config.model.hidden_dim)
 print(config.training.lr)
+print(config.training.gpus)
+```
+
+**Command-line usage:**
+
+```bash
+# Basic usage - config file is the FIRST argument
+python train.py config.yaml
+
+# Override existing values
+python train.py config.yaml training.lr=0.01 model.depth=34
+
+# Add new configuration keys
+python train.py config.yaml +experiment.debug=true
+
+# Override with lists (JSON format)
+python train.py config.yaml training.gpus=[0,1,2,3]
+
+# Override with space-separated lists (auto-detect type)
+python train.py config.yaml training.gpus=0 1 2 3
+
+# Override with typed lists
+python train.py config.yaml training.ids:int=1 2 3
+python train.py config.yaml data.splits:str=train val test
+
+# View current configuration
+python train.py config.yaml --show-config
+
+# View configuration schema with types
+python train.py config.yaml --config-help
+```
+
+**Type preservation:**
+
+ExpMate automatically detects and preserves types:
+
+```bash
+# From config.yaml:
+#   training:
+#     lr: 0.001          # float
+#     epochs: 100        # int
+#     use_amp: true      # bool
+#     gpus: [0, 1]       # list
+
+# Command line overrides preserve types:
+python train.py config.yaml training.lr=0.01        # → float
+python train.py config.yaml training.epochs=200     # → int
+python train.py config.yaml training.use_amp=false  # → bool
+python train.py config.yaml training.gpus=0 1 2     # → list[int]
 ```
 
 ### Experiment Logger

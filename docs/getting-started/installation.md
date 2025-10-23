@@ -12,7 +12,13 @@ Install ExpMate using pip:
 pip install expmate
 ```
 
-This installs the core package with minimal dependencies (PyYAML and NumPy).
+This installs the core package with all essential dependencies:
+- ✅ **Configuration parser** - YAML configs with CLI overrides (pyyaml)
+- ✅ **Experiment logger** - Structured logging and metrics tracking (numpy)
+- ✅ **CLI tools** - `compare`, `visualize`, `sweep` commands
+- ✅ **Visualization** - Plot metrics with matplotlib
+- ✅ **Data analysis** - Fast data processing with polars
+- ✅ **System monitoring** - Track CPU/memory usage with psutil
 
 ## Optional Dependencies
 
@@ -21,12 +27,15 @@ This installs the core package with minimal dependencies (PyYAML and NumPy).
 For integration with Weights & Biases and TensorBoard:
 
 ```bash
+# Weights & Biases only
+pip install expmate[wandb]
+
+# TensorBoard only
+pip install expmate[tensorboard]
+
+# Both tracking platforms
 pip install expmate[tracking]
 ```
-
-This includes:
-- `wandb>=0.15.0`
-- `tensorboard>=2.13.0`
 
 ### Development Tools
 

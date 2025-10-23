@@ -55,26 +55,28 @@ config = parse_config()
 Usage:
 
 ```bash
+# Config file is the first positional argument
 python train.py config.yaml training.lr=0.01
 ```
 
-### Using ConfigArgumentParser
+### Advanced Parser Usage
 
-For more control, use the argument parser directly:
+If you need additional command-line arguments:
 
 ```python
 from expmate import ConfigArgumentParser
 
 parser = ConfigArgumentParser()
-parser.add_argument('--config', type=str, required=True)
-parser.add_argument('--gpu', type=int, default=0)
-config = parser.parse_config()
+# Config file is still the first positional argument
+# You can add additional arguments if needed
+args, config = parser.parse_args(), parser.parse_args()
 ```
 
 Usage:
 
 ```bash
-python train.py --config config.yaml --gpu 2 training.lr=0.01
+# Config file first, then overrides
+python train.py config.yaml training.lr=0.01
 ```
 
 ## Override Syntax
@@ -121,14 +123,93 @@ python train.py config.yaml model.name:str=resnet
 
 ### Lists and Complex Values
 
+#### JSON Format
+
 Use JSON syntax for lists and dictionaries:
 
 ```bash
-# Lists
-python train.py config.yaml model.layers='[64,128,256]'
+# Lists (JSON format)
+python train.py config.yaml training.layers=[64,128,256]
 
 # Dictionaries
 python train.py config.yaml optimizer='{"name":"adam","lr":0.001}'
+```
+
+#### Space-Separated Lists
+
+Provide lists as space-separated values with automatic type detection:
+
+```bash
+# Auto-detect type (integers in this case)
+python train.py config.yaml training.gpus=0 1 2 3
+
+# Auto-detect type (floats)
+python train.py config.yaml model.dropout=0.1 0.2 0.3
+```
+
+#### Typed Lists
+
+Use type hints to explicitly specify list element types:
+
+```bash
+# Force integer type
+python train.py config.yaml training.gpu_ids:int=0 1 2 3
+
+# Force float type
+python train.py config.yaml model.scales:float=0.5 1.0 2.0
+
+# Force string type
+python train.py config.yaml data.splits:str=train val test
+
+# Force boolean type
+python train.py config.yaml flags:bool=true false true
+```
+
+## Configuration Introspection
+
+### View Current Configuration
+
+Display the current configuration structure:
+
+```bash
+python train.py config.yaml --show-config
+```
+
+This shows the complete configuration after loading the YAML file and applying any overrides.
+
+### View Configuration Schema
+
+Display configuration with type information:
+
+```bash
+python train.py config.yaml --config-help
+```
+
+Example output:
+
+```
+================================================================
+Configuration Schema
+================================================================
+
+Available configuration keys and their current values:
+
+  training.lr:
+    type: float
+    value: 0.001
+    override: training.lr=<value>
+
+  training.gpus:
+    type: list[int]
+    value: [0, 1]
+    override: training.gpus=[...]  or  training.gpus:int=0 1 2
+
+  model.hidden_dim:
+    type: int
+    value: 256
+    override: model.hidden_dim=<value>
+
+================================================================
 ```
 
 ## Variable Interpolation

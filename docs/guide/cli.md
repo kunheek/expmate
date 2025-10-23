@@ -4,10 +4,10 @@ ExpMate provides command-line tools for experiment management and analysis.
 
 ## Installation
 
-CLI tools are available after installing ExpMate:
+CLI tools are included with the base installation:
 
 ```bash
-pip install expmate[viz]  # For visualization features
+pip install expmate
 ```
 
 Verify installation:
@@ -116,137 +116,172 @@ expmate viz \
 
 ### Hyperparameter Sweeps
 
-Run systematic hyperparameter searches.
+Run systematic hyperparameter searches with grid search.
 
-#### Grid Search
+#### Basic Grid Search
 
 ```bash
-expmate sweep config.yaml \
-    --param training.lr 0.001 0.01 0.1 \
-    --param model.hidden_dim 128 256 512 \
-    --script train.py \
-    --runs-dir sweeps/grid
+# Basic sweep - creates all combinations
+expmate sweep "python train.py {config}" \
+  --config config.yaml \
+  --sweep "training.lr=[0.001,0.01,0.1]" \
+          "model.hidden_dim=[128,256,512]"
 ```
 
-This creates 3 × 3 = 9 runs with all combinations.
+This creates 3 × 3 = 9 runs with all combinations of the parameters.
 
-#### Random Search
+The `{config}` placeholder is replaced with the path to each generated config file.
+
+#### With Distributed Training
+
+Use `torchrun` in the command template:
 
 ```bash
-expmate sweep config.yaml \
-    --param training.lr 0.001:0.1:log \
-    --param training.dropout 0.1:0.5 \
-    --param model.hidden_dim 128:512:int \
-    --num-samples 20 \
-    --mode random \
-    --script train.py
+expmate sweep "torchrun --nproc_per_node=4 train.py {config}" \
+  --config config.yaml \
+  --sweep "training.lr=[0.001,0.01,0.1]"
 ```
 
-Parameter syntax:
-- `min:max`: Uniform distribution
-- `min:max:log`: Log-uniform distribution
-- `min:max:int`: Integer uniform distribution
-
-#### Options
+#### Sweep Options
 
 ```bash
-# Parallel execution
-expmate sweep config.yaml \
-    --param training.lr 0.001 0.01 0.1 \
-    --script train.py \
-    --parallel 4  # Run 4 experiments in parallel
+# Custom sweep name
+expmate sweep "python train.py {config}" \
+  --config config.yaml \
+  --name my_lr_sweep \
+  --sweep "training.lr=[0.001,0.01,0.1]"
 
-# GPU assignment
-expmate sweep config.yaml \
-    --param training.lr 0.001 0.01 0.1 \
-    --script train.py \
-    --gpus 0,1,2,3  # Distribute across GPUs
+# Custom runs directory
+expmate sweep "python train.py {config}" \
+  --config config.yaml \
+  --runs-dir sweeps/experiments \
+  --sweep "training.lr=[0.001,0.01,0.1]"
 
-# Resume interrupted sweep
-expmate sweep config.yaml \
-    --param training.lr 0.001 0.01 0.1 \
-    --script train.py \
-    --resume sweeps/grid
+# Dry run (preview commands without running)
+expmate sweep "python train.py {config}" \
+  --config config.yaml \
+  --sweep "training.lr=[0.001,0.01,0.1]" \
+  --dry-run
+```
 
-# Dry run (print commands without executing)
-expmate sweep config.yaml \
-    --param training.lr 0.001 0.01 0.1 \
-    --script train.py \
-    --dry-run
+#### Multiple Parameters
+
+Sweep over multiple parameters:
+
+```bash
+expmate sweep "python train.py {config}" \
+  --config config.yaml \
+  --sweep \
+    "training.lr=[0.0001,0.001,0.01]" \
+    "training.weight_decay=[0,0.0001,0.001]" \
+    "model.dropout=[0.1,0.2,0.3]"
+```
+
+This creates 3 × 3 × 3 = 27 runs.
+
+#### Parameter Value Types
+
+The sweep command automatically detects types:
+
+```bash
+# Floats
+--sweep "training.lr=[0.001,0.01,0.1]"
+
+# Integers
+--sweep "model.hidden_dim=[128,256,512]"
+
+# Strings
+--sweep "model.activation=[relu,gelu,silu]"
+
+# Booleans
+--sweep "training.use_amp=[true,false]"
+
+# Mixed types
+--sweep "training.batch_size=[16,32,64]" \
+        "optimizer.name=[adam,sgd,adamw]"
 ```
 
 #### Example Workflow
 
 ```bash
 # 1. Run hyperparameter sweep
-expmate sweep config.yaml \
-    --param training.lr 0.0001 0.001 0.01 \
-    --param training.weight_decay 0 0.0001 0.001 \
-    --script train.py \
-    --runs-dir sweeps/lr_wd \
-    --parallel 3
+expmate sweep "python train.py {config}" \
+  --config config.yaml \
+  --name lr_wd_sweep \
+  --runs-dir sweeps/lr_wd \
+  --sweep \
+    "training.lr=[0.0001,0.001,0.01]" \
+    "training.weight_decay=[0,0.0001,0.001]"
 
 # 2. Compare results
 expmate compare sweeps/lr_wd/exp_* --output sweep_results.csv
 
 # 3. Visualize best runs
 expmate viz \
-    sweeps/lr_wd/exp_001 \
+    sweeps/lr_wd/exp_000 \
     sweeps/lr_wd/exp_004 \
-    sweeps/lr_wd/exp_007 \
+    sweeps/lr_wd/exp_008 \
     --metrics val_loss val_accuracy
+```
+
+#### Output Structure
+
+Each sweep creates a directory structure:
+
+```
+sweeps/lr_wd_sweep_20250123_143022/
+├── sweep_info.json           # Sweep configuration and metadata
+├── exp_000/
+│   ├── config.yaml           # Generated config for this run
+│   ├── run.yaml              # Full config after execution
+│   ├── exp.log               # Logs
+│   └── metrics.csv           # Metrics
+├── exp_001/
+│   └── ...
+└── exp_008/
+    └── ...
 ```
 
 ## Python API
 
 You can also use CLI functionality from Python:
 
-### Compare Runs
+### Generate Sweep Configurations
 
 ```python
-from expmate.cli.compare import compare_runs
+from expmate.cli.sweep import generate_sweep_configs
 
-df = compare_runs(
-    run_dirs=['runs/exp1', 'runs/exp2', 'runs/exp3'],
-    metrics=['loss', 'accuracy'],
-    show_config=True
-)
-print(df)
-```
-
-### Visualize Metrics
-
-```python
-from expmate.cli.visualize import plot_metrics
-
-plot_metrics(
-    run_dirs=['runs/exp1', 'runs/exp2'],
-    metrics=['loss', 'accuracy'],
-    output_file='comparison.png',
-    style='seaborn'
-)
-```
-
-### Generate Sweep
-
-```python
-from expmate.cli.sweep import generate_sweep_configs, run_sweep
-
-# Generate configurations
+# Generate all configurations for a grid search
 configs = generate_sweep_configs(
-    base_config_file='config.yaml',
-    param_grid={
+    base_config={'model': {'depth': 18}, 'training': {'epochs': 100}},
+    sweep_params={
         'training.lr': [0.001, 0.01, 0.1],
         'model.hidden_dim': [128, 256, 512]
     }
 )
 
-# Run sweep
+# Returns list of 9 configurations with all combinations
+for i, config in enumerate(configs):
+    print(f"Config {i}: lr={config['training']['lr']}, "
+          f"hidden_dim={config['model']['hidden_dim']}")
+```
+
+### Run Sweep
+
+```python
+from expmate.cli.sweep import run_sweep
+
+# Run the sweep
 run_sweep(
-    script='train.py',
-    configs=configs,
-    runs_dir='sweeps/grid',
-    parallel=4
+    command_template="python train.py {config}",
+    sweep_params={
+        'training.lr': [0.001, 0.01, 0.1],
+        'model.hidden_dim': [128, 256, 512]
+    },
+    base_config_file='config.yaml',
+    sweep_name='my_sweep',
+    runs_dir='sweeps',
+    dry_run=False  # Set True to preview without running
 )
 ```
 
