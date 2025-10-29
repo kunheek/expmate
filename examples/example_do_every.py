@@ -1,6 +1,6 @@
-"""Example demonstrating the do_every context manager for rate-limited execution.
+"""Example demonstrating the should_run method for rate-limited execution.
 
-The do_every context manager allows you to execute code at specified intervals:
+The should_run method allows you to execute code at specified intervals:
 - every=N: Execute every N iterations
 - seconds=N: Execute every N seconds
 - key: Optional unique identifier for multiple rate limiters
@@ -31,15 +31,13 @@ def main():
         loss = 1.0 / (step + 1)
 
         # Save checkpoint every 100 iterations
-        with logger.do_every(every=100) as should_execute:
-            if should_execute:
-                logger.info(f"💾 Saving checkpoint at step {step}")
-                # save_checkpoint(model, f"checkpoint_{step}.pt")
+        if logger.should_run(every=100):
+            logger.info(f"💾 Saving checkpoint at step {step}")
+            # save_checkpoint(model, f"checkpoint_{step}.pt")
 
         # Log every 50 iterations
-        with logger.do_every(every=50, key="metrics") as should_execute:
-            if should_execute:
-                logger.info(f"Step {step}: loss={loss:.4f}")
+        if logger.should_run(every=50, key="metrics"):
+            logger.info(f"Step {step}: loss={loss:.4f}")
 
     print("\n=== Example 2: Time-based rate limiting ===")
     print("Validate every 2 seconds")
@@ -53,18 +51,16 @@ def main():
         time.sleep(0.1)  # Simulate work
 
         # Validate every 2 seconds
-        with logger.do_every(seconds=2.0, key="validation") as should_execute:
-            if should_execute:
-                elapsed = time.time() - start_time
-                logger.info(f"🔍 Running validation at {elapsed:.1f}s (step {step})")
-                # val_loss = validate(model, val_loader)
+        if logger.should_run(seconds=2.0, key="validation"):
+            elapsed = time.time() - start_time
+            logger.info(f"🔍 Running validation at {elapsed:.1f}s (step {step})")
+            # val_loss = validate(model, val_loader)
 
         # Monitor GPU every 1 second
-        with logger.do_every(seconds=1.0, key="gpu_monitor") as should_execute:
-            if should_execute:
-                elapsed = time.time() - start_time
-                logger.info(f"📊 GPU stats at {elapsed:.1f}s")
-                # log_gpu_stats()
+        if logger.should_run(seconds=1.0, key="gpu_monitor"):
+            elapsed = time.time() - start_time
+            logger.info(f"📊 GPU stats at {elapsed:.1f}s")
+            # log_gpu_stats()
 
     print("\n=== Example 3: Multiple rate limiters ===")
     print("Different operations at different rates")
@@ -72,19 +68,17 @@ def main():
     for epoch in range(3):
         for step in range(100):
             # Quick logging every 10 steps
-            with logger.do_every(every=10, key="train_log") as should_execute:
-                if should_execute:
-                    logger.info(f"Epoch {epoch}, Step {step}/{100}")
+            if logger.should_run(every=10, key="train_log"):
+                logger.info(f"Epoch {epoch}, Step {step}/{100}")
 
             # Validation every 50 steps
-            with logger.do_every(every=50, key="validation") as should_execute:
-                if should_execute:
-                    logger.info(f"  🔍 Validation at epoch {epoch}, step {step}")
+            if logger.should_run(every=50, key="validation"):
+                logger.info(f"  🔍 Validation at epoch {epoch}, step {step}")
 
         # End of epoch checkpoint
         logger.info(f"💾 End of epoch {epoch} checkpoint")
 
-    print("\n=== Comparison: log_every vs do_every ===")
+    print("\n=== Comparison: log_every vs should_run ===")
 
     # log_every: For rate-limiting logging specifically
     for step in range(20):
@@ -95,15 +89,14 @@ def main():
 
     print()
 
-    # do_every: For rate-limiting any code execution
+    # should_run: For rate-limiting any code execution
     for step in range(20):
-        with logger.do_every(every=5) as should_execute:
-            if should_execute:
-                logger.info(
-                    f"do_every: Step {step}"
-                )  # Code only runs when should_execute is True
+        if logger.should_run(every=5):
+            logger.info(
+                f"should_run: Step {step}"
+            )  # Code only runs when condition is True
 
-    logger.info("\n✅ do_every examples completed!")
+    logger.info("\n✅ should_run examples completed!")
     logger.close()
 
 

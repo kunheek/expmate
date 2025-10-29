@@ -551,40 +551,32 @@ class ExperimentLogger:
             self._stage_stack.pop()
             self._current_stage = old_stage
 
-    @contextmanager
-    def do_every(self, every: int = None, seconds: float = None, key: str = None):
-        """Context manager for rate-limited execution of any code.
+    def should_run(
+        self, every: int = None, seconds: float = None, key: str = None
+    ) -> bool:
+        """Check if code should run based on rate limiting.
 
-        Executes code block only every N iterations or every N seconds,
-        useful for reducing overhead in tight loops.
+        Returns a boolean indicating whether to execute. Use with 'if' for clean syntax.
 
         Args:
             every: Execute every N iterations (mutually exclusive with seconds)
             seconds: Execute every N seconds (mutually exclusive with every)
             key: Unique key for this rate limiter (auto-generated if None)
 
-        Usage:
-            # Execute every 100 iterations
-            for step in range(10000):
-                loss = train_step()
-                with logger.do_every(every=100) as should_execute:
-                    if should_execute:
-                        save_checkpoint()
-
-            # Execute every 5 seconds
-            for batch in dataloader:
-                with logger.do_every(seconds=5.0) as should_execute:
-                    if should_execute:
-                        log_gpu_stats()
-
-            # Multiple rate limiters with different keys
-            for step in range(1000):
-                with logger.do_every(every=10, key="validation") as should_execute:
-                    if should_execute:
-                        validate()
-
-        Yields:
+        Returns:
             bool: True if code should execute, False if skipped
+
+        Usage:
+            # Clean 'if' syntax
+            for step in range(10000):
+                if logger.should_run(every=100):
+                    logger.info(f"Step {step}")
+                    save_checkpoint()
+
+            # Time-based rate limiting
+            for batch in dataloader:
+                if logger.should_run(seconds=5.0):
+                    logger.info("Expensive logging")
         """
         if every is None and seconds is None:
             raise ValueError("Must specify either 'every' or 'seconds'")
@@ -618,22 +610,17 @@ class ExperimentLogger:
                 should_execute = True
                 self._rate_limit_last_log[key] = current_time
 
-        # Temporarily suppress logging if not time to execute
-        if not should_execute and self.console_handler:
-            # Remove console handler temporarily
-            if self.console_handler in self.logger.handlers:
-                self.logger.removeHandler(self.console_handler)
-                try:
-                    yield should_execute
-                finally:
-                    # Restore console handler
-                    if self.console_handler not in self.logger.handlers:
-                        self.logger.addHandler(self.console_handler)
-            else:
-                # Handler not present, just yield
-                yield should_execute
-        else:
-            yield should_execute
+        return should_execute
+
+    # Backward compatibility alias - wraps should_run as context manager
+    @contextmanager
+    def do_every(self, every: int = None, seconds: float = None, key: str = None):
+        """Deprecated: Use should_run() instead.
+
+        Context manager version for backward compatibility.
+        """
+        should_execute = self.should_run(every=every, seconds=seconds, key=key)
+        yield should_execute
 
     @contextmanager
     def log_every(self, every: int = None, seconds: float = None, key: str = None):
@@ -669,35 +656,25 @@ class ExperimentLogger:
         Yields:
             bool: True if logging should occur, False if suppressed
         """
-        # Use do_every to determine if we should log
-        with self.do_every(every=every, seconds=seconds, key=key) as should_log:
-            # Temporarily suppress logging if not time to log
-            if not should_log and self.console_handler:
-                # Remove console handler temporarily
-                if self.console_handler in self.logger.handlers:
-                    self.logger.removeHandler(self.console_handler)
-                    try:
-                        yield should_log
-                    finally:
-                        # Restore console handler
-                        if self.console_handler not in self.logger.handlers:
-                            self.logger.addHandler(self.console_handler)
-                else:
-                    # Handler not present, just yield
+        # Use should_run to determine if we should log
+        should_log = self.should_run(every=every, seconds=seconds, key=key)
+
+        # Temporarily suppress logging if not time to log
+        if not should_log and self.console_handler:
+            # Remove console handler temporarily
+            if self.console_handler in self.logger.handlers:
+                self.logger.removeHandler(self.console_handler)
+                try:
                     yield should_log
+                finally:
+                    # Restore console handler
+                    if self.console_handler not in self.logger.handlers:
+                        self.logger.addHandler(self.console_handler)
             else:
+                # Handler not present, just yield
                 yield should_log
-
-    # Backward compatibility alias
-    @contextmanager
-    def profile(self, name: str, log_result: bool = True, **kwargs):
-        """Deprecated: Use timer() instead.
-
-        This method is kept for backward compatibility but will be removed in a future version.
-        For simple timing, use timer(). For detailed profiling, use torch.profiler directly.
-        """
-        with self.timer(name, log_result) as result:
-            yield result
+        else:
+            yield should_log
 
     def set_log_level(self, level: str):
         """Change the logging level.

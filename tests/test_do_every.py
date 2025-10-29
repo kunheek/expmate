@@ -1,4 +1,4 @@
-"""Tests for the do_every context manager."""
+"""Tests for the should_run method and do_every backward compatibility."""
 
 import time
 
@@ -7,8 +7,8 @@ import pytest
 from expmate.logger import ExperimentLogger
 
 
-class TestDoEvery:
-    """Test suite for do_every context manager."""
+class TestShouldRun:
+    """Test suite for should_run method."""
 
     def test_iteration_based_execution(self, tmp_path):
         """Test iteration-based rate limiting."""
@@ -16,9 +16,8 @@ class TestDoEvery:
 
         executed = []
         for i in range(20):
-            with logger.do_every(every=5) as should_execute:
-                if should_execute:
-                    executed.append(i)
+            if logger.should_run(every=5):
+                executed.append(i)
 
         # Should execute at iterations 0, 5, 10, 15
         assert executed == [0, 5, 10, 15]
@@ -32,9 +31,8 @@ class TestDoEvery:
 
         # Run for ~1.5 seconds
         while time.time() - start_time < 1.5:
-            with logger.do_every(seconds=0.5) as should_execute:
-                if should_execute:
-                    executed.append(time.time() - start_time)
+            if logger.should_run(seconds=0.5):
+                executed.append(time.time() - start_time)
             time.sleep(0.1)
 
         # Should execute approximately 3-4 times (at 0s, 0.5s, 1.0s, maybe 1.5s)
@@ -53,13 +51,11 @@ class TestDoEvery:
         executed_b = []
 
         for i in range(30):
-            with logger.do_every(every=5, key="key_a") as should_execute:
-                if should_execute:
-                    executed_a.append(i)
+            if logger.should_run(every=5, key="key_a"):
+                executed_a.append(i)
 
-            with logger.do_every(every=10, key="key_b") as should_execute:
-                if should_execute:
-                    executed_b.append(i)
+            if logger.should_run(every=10, key="key_b"):
+                executed_b.append(i)
 
         assert executed_a == [0, 5, 10, 15, 20, 25]
         assert executed_b == [0, 10, 20]
@@ -71,9 +67,8 @@ class TestDoEvery:
         # Same line number means same key, so counter continues
         executed = []
         for i in range(10):
-            with logger.do_every(every=3) as should_execute:
-                if should_execute:
-                    executed.append(i)
+            if logger.should_run(every=3):
+                executed.append(i)
 
         # Should execute at 0, 3, 6, 9 (starts at 0)
         assert executed == [0, 3, 6, 9]
@@ -81,15 +76,13 @@ class TestDoEvery:
         # Using an explicit key allows independent counters
         executed_a = []
         for i in range(10):
-            with logger.do_every(every=3, key="explicit_a") as should_execute:
-                if should_execute:
-                    executed_a.append(i)
+            if logger.should_run(every=3, key="explicit_a"):
+                executed_a.append(i)
 
         executed_b = []
         for i in range(10):
-            with logger.do_every(every=3, key="explicit_b") as should_execute:
-                if should_execute:
-                    executed_b.append(i)
+            if logger.should_run(every=3, key="explicit_b"):
+                executed_b.append(i)
 
         # Each explicit key starts independently
         assert executed_a == [0, 3, 6, 9]
@@ -102,8 +95,7 @@ class TestDoEvery:
         with pytest.raises(
             ValueError, match="Must specify either 'every' or 'seconds'"
         ):
-            with logger.do_every() as _:
-                pass
+            logger.should_run()
 
     def test_cannot_specify_both(self, tmp_path):
         """Test that 'every' and 'seconds' are mutually exclusive."""
@@ -112,11 +104,10 @@ class TestDoEvery:
         with pytest.raises(
             ValueError, match="Cannot specify both 'every' and 'seconds'"
         ):
-            with logger.do_every(every=5, seconds=1.0) as _:
-                pass
+            logger.should_run(every=5, seconds=1.0)
 
-    def test_log_every_uses_do_every(self, tmp_path):
-        """Test that log_every still works correctly after refactoring to use do_every."""
+    def test_log_every_uses_should_run(self, tmp_path):
+        """Test that log_every still works correctly after refactoring to use should_run."""
         logger = ExperimentLogger(run_dir=tmp_path)
 
         # Count actual log outputs by capturing them
@@ -132,8 +123,8 @@ class TestDoEvery:
         # But we can verify it was called 20 times
         assert len(logged_steps) == 20
 
-    def test_combined_log_every_and_do_every(self, tmp_path):
-        """Test using both log_every and do_every in the same loop."""
+    def test_combined_log_every_and_should_run(self, tmp_path):
+        """Test using both log_every and should_run in the same loop."""
         logger = ExperimentLogger(run_dir=tmp_path)
 
         checkpoints = []
@@ -141,9 +132,8 @@ class TestDoEvery:
 
         for i in range(50):
             # Save checkpoint every 20 iterations
-            with logger.do_every(every=20, key="checkpoint") as should_execute:
-                if should_execute:
-                    checkpoints.append(i)
+            if logger.should_run(every=20, key="checkpoint"):
+                checkpoints.append(i)
 
             # Log every 10 iterations
             with logger.log_every(every=10, key="logging"):
@@ -160,24 +150,38 @@ class TestDoEvery:
         # every=0 should never execute (except first iteration)
         executed = []
         for i in range(10):
-            with logger.do_every(every=1) as should_execute:
-                if should_execute:
-                    executed.append(i)
+            if logger.should_run(every=1):
+                executed.append(i)
 
         # Should execute every iteration
         assert executed == list(range(10))
 
     def test_cleanup(self, tmp_path):
-        """Test that logger closes cleanly after using do_every."""
+        """Test that logger closes cleanly after using should_run."""
         logger = ExperimentLogger(run_dir=tmp_path)
 
         for i in range(10):
-            with logger.do_every(every=5) as should_execute:
-                if should_execute:
-                    logger.info(f"Step {i}")  # Write something to create files
+            if logger.should_run(every=5):
+                logger.info(f"Step {i}")  # Write something to create files
 
         logger.close()
 
         # Verify files were created
         assert (tmp_path / "exp.log").exists()
         assert (tmp_path / "events.jsonl").exists()
+
+
+class TestDoEveryBackwardCompat:
+    """Test backward compatibility for do_every (deprecated alias)."""
+
+    def test_do_every_still_works(self, tmp_path):
+        """Test that do_every still works as an alias."""
+        logger = ExperimentLogger(run_dir=tmp_path)
+
+        executed = []
+        for i in range(20):
+            with logger.do_every(every=5) as should_execute:
+                if should_execute:
+                    executed.append(i)
+
+        assert executed == [0, 5, 10, 15]

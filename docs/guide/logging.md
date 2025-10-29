@@ -206,10 +206,6 @@ for step in range(1000):
 **Note**: The `profile()` method is deprecated. Use `timer()` instead for simple timing, or `torch.profiler` for detailed profiling.
 
 ```python
-# OLD (deprecated but still works)
-with logger.profile('data_loading'):
-    data = load_data()
-
 # NEW (recommended)
 with logger.timer('data_loading'):
     data = load_data()
