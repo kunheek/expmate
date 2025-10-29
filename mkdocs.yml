@@ -1,0 +1,97 @@
+site_name: ExpMate Documentation
+site_description: ML Research Boilerplate — Config & Logging First
+site_author: Kunhee Kim
+site_url: https://kunheek.github.io/expmate
+
+repo_name: kunheek/expmate
+repo_url: https://github.com/kunheek/expmate
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quickstart.md
+      - Basic Concepts: getting-started/concepts.md
+  - User Guide:
+      - Configuration Management: guide/configuration.md
+      - Experiment Logging: guide/logging.md
+      - Checkpoint Management: guide/checkpoints.md
+      - Distributed Training: guide/distributed.md
+      - Experiment Tracking: guide/tracking.md
+      - CLI Tools: guide/cli.md
+  - Examples:
+      - Minimal Example: examples/minimal.md
+      - Complete Training: examples/training.md
+      - DDP Training: examples/ddp.md
+      - Hyperparameter Sweeps: examples/sweeps.md
+  - API Reference:
+      - Config: api/config.md
+      - Logger: api/logger.md
+      - Parser: api/parser.md
+      - Checkpoint: api/checkpoint.md
+      - Tracking: api/tracking.md
+      - Utils: api/utils.md
+  - Advanced Topics:
+      - Argument Parser: ARGUMENT_PARSER.md
+      - LSP & Type Inference: LSP_FIX_SUMMARY.md
+      - Package Flags: PACKAGE_FLAGS.md
+      - Progress Bars (mp_tqdm): MP_TQDM.md
+      - Typed Config: TYPED_CONFIG.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kunheek/expmate
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/expmate/
+
+copyright: Copyright &copy; 2025 Kunhee Kim

@@ -1,0 +1,21 @@
+# Configuration for DDP Training Example
+
+run_id: ddp_${now:%Y%m%d_%H%M%S}
+seed: 42
+
+data:
+  n_samples: 10000
+  input_dim: 100
+  output_dim: 10
+  batch_size: 64
+
+model:
+  hidden_dim: 128
+
+training:
+  epochs: 5
+  lr: 0.001
+
+checkpoint:
+  keep_last: 2
+  keep_best: 3

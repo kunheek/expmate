@@ -1,0 +1,6 @@
+run_id: minimal_experiment
+seed: 42
+
+training:
+  lr: 0.01
+  epochs: 10

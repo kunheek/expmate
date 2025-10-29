@@ -1,0 +1,15 @@
+# Configuration for Linear Regression Example
+
+run_id: linear_reg_${now:%Y%m%d_%H%M%S}
+seed: 42
+
+data:
+  n_samples: 1000
+  noise: 0.1
+  train_split: 0.8
+
+model:
+  lr: 0.01
+
+training:
+  epochs: 100
