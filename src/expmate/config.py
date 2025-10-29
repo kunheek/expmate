@@ -1099,7 +1099,7 @@ class Config:
     def _format_value(self, value, indent=0):
         """Format a value for display, handling nested structures."""
         indent_str = " " * indent
-        
+
         # Handle nested Config objects
         if isinstance(value, Config):
             # Get the fields to display
@@ -1119,7 +1119,9 @@ class Config:
                             if "\n" in formatted:
                                 # For multiline nested values, first line is inline with key
                                 formatted_lines = formatted.split("\n")
-                                lines.append(f"{indent_str}  {name}: {formatted_lines[0]}")
+                                lines.append(
+                                    f"{indent_str}  {name}: {formatted_lines[0]}"
+                                )
                                 # Rest of lines are indented
                                 for line in formatted_lines[1:]:
                                     if line:
@@ -1145,7 +1147,7 @@ class Config:
                         lines.append(f"{indent_str}  {k}: {formatted}")
                 return "\n".join(lines)
             return f"{value.__class__.__name__}()"
-        
+
         if isinstance(value, dict):
             if not value:
                 return "{}"
