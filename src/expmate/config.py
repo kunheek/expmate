@@ -1099,22 +1099,82 @@ class Config:
     def _format_value(self, value, indent=0):
         """Format a value for display, handling nested structures."""
         indent_str = " " * indent
+        
+        # Handle nested Config objects
+        if isinstance(value, Config):
+            # Get the fields to display
+            if hasattr(value.__class__, "__dataclass_fields__"):
+                field_names = [
+                    f.name
+                    for f in fields(value.__class__)
+                    if not f.name.startswith("_")
+                ]
+                if field_names:
+                    lines = [f"{value.__class__.__name__}"]
+                    for name in field_names:
+                        try:
+                            field_value = getattr(value, name)
+                            formatted = self._format_value(field_value, indent + 2)
+                            # Check if formatted value is multiline
+                            if "\n" in formatted:
+                                # For multiline nested values, first line is inline with key
+                                formatted_lines = formatted.split("\n")
+                                lines.append(f"{indent_str}  {name}: {formatted_lines[0]}")
+                                # Rest of lines are indented
+                                for line in formatted_lines[1:]:
+                                    if line:
+                                        lines.append(f"{indent_str}  {line}")
+                            else:
+                                lines.append(f"{indent_str}  {name}: {formatted}")
+                        except AttributeError:
+                            pass
+                    return "\n".join(lines)
+            # Fallback for dynamic configs
+            data = object.__getattribute__(value, "_data")
+            if data:
+                lines = [f"{value.__class__.__name__}"]
+                for k, v in data.items():
+                    formatted = self._format_value(v, indent + 2)
+                    if "\n" in formatted:
+                        formatted_lines = formatted.split("\n")
+                        lines.append(f"{indent_str}  {k}: {formatted_lines[0]}")
+                        for line in formatted_lines[1:]:
+                            if line:
+                                lines.append(f"{indent_str}  {line}")
+                    else:
+                        lines.append(f"{indent_str}  {k}: {formatted}")
+                return "\n".join(lines)
+            return f"{value.__class__.__name__}()"
+        
         if isinstance(value, dict):
             if not value:
                 return "{}"
             lines = ["{"]
             for k, v in value.items():
-                lines.append(f"{indent_str}  {k}: {self._format_value(v, indent + 2)}")
+                formatted = self._format_value(v, indent + 2)
+                if "\n" in formatted:
+                    lines.append(f"{indent_str}  {k}:")
+                    for line in formatted.split("\n"):
+                        lines.append(f"{indent_str}    {line}")
+                else:
+                    lines.append(f"{indent_str}  {k}: {formatted}")
             lines.append(f"{indent_str}}}")
             return "\n".join(lines)
         if isinstance(value, list):
             if not value:
                 return "[]"
-            if len(value) <= 3 and all(not isinstance(v, (dict, list)) for v in value):
+            if len(value) <= 3 and all(
+                not isinstance(v, (dict, list, Config)) for v in value
+            ):
                 return f"[{', '.join(repr(v) for v in value)}]"
             lines = ["["]
             for item in value:
-                lines.append(f"{indent_str}  {self._format_value(item, indent + 2)}")
+                formatted = self._format_value(item, indent + 2)
+                if "\n" in formatted:
+                    for line in formatted.split("\n"):
+                        lines.append(f"{indent_str}  {line}")
+                else:
+                    lines.append(f"{indent_str}  {formatted}")
             lines.append(f"{indent_str}]")
             return "\n".join(lines)
         return repr(value)

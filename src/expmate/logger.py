@@ -618,7 +618,22 @@ class ExperimentLogger:
                 should_execute = True
                 self._rate_limit_last_log[key] = current_time
 
-        yield should_execute
+        # Temporarily suppress logging if not time to execute
+        if not should_execute and self.console_handler:
+            # Remove console handler temporarily
+            if self.console_handler in self.logger.handlers:
+                self.logger.removeHandler(self.console_handler)
+                try:
+                    yield should_execute
+                finally:
+                    # Restore console handler
+                    if self.console_handler not in self.logger.handlers:
+                        self.logger.addHandler(self.console_handler)
+            else:
+                # Handler not present, just yield
+                yield should_execute
+        else:
+            yield should_execute
 
     @contextmanager
     def log_every(self, every: int = None, seconds: float = None, key: str = None):
