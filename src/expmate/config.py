@@ -7,6 +7,7 @@ import socket
 import subprocess
 import uuid
 import warnings
+from copy import deepcopy
 from dataclasses import MISSING, dataclass, field, fields
 from pathlib import Path
 from typing import (
@@ -908,6 +909,49 @@ class Config:
         object.__setattr__(instance, "_data", interpolated)
         return instance
 
+    def override(
+        self: ConfigT, overrides: List[str], run_dir: Optional[Path] = None
+    ) -> ConfigT:
+        """Create a new config instance with overrides applied.
+
+        This method creates a new Config instance with the specified overrides
+        applied to the current configuration. The original config is not modified.
+
+        Args:
+            overrides: List of key=value overrides
+            run_dir: Optional directory to save the new config snapshot
+
+        Returns:
+            New Config instance with overrides applied
+
+        Example:
+            config = Config.from_file("config.yaml")
+            new_config = config.override(["+lr=0.01", "batch_size=64"])
+        """
+        # Get current data and merge with overrides (deep copy to avoid mutation)
+        current_data = deepcopy(object.__getattribute__(self, "_data"))
+        raw_config = load_config(current_data, overrides)
+        interpolated = interpolate_config(raw_config)
+
+        if run_dir:
+            save_config_snapshot(interpolated, run_dir)
+
+        # Create new instance of the same type
+        cls = type(self)
+
+        # If cls is the base Config class, use dynamic dict
+        if cls is Config:
+            instance = cls()
+            object.__setattr__(instance, "_raw_config", raw_config)
+            object.__setattr__(instance, "_data", interpolated)
+            return instance
+
+        # Otherwise, it's a typed subclass - populate fields
+        instance = dict_to_dataclass(cls, interpolated)
+        object.__setattr__(instance, "_raw_config", raw_config)
+        object.__setattr__(instance, "_data", interpolated)
+        return instance
+
     @property
     def raw_config(self) -> Dict[str, Any]:
         """Get raw config before interpolation."""
@@ -1009,11 +1053,19 @@ class Config:
                 if field_strs:
                     return f"{self.__class__.__name__}({', '.join(field_strs)})"
 
-        # For dynamic configs, show first few keys
-        keys = list(data.keys())[:3]
-        key_str = ", ".join(f"{k}={data[k]!r}" for k in keys)
-        if len(data) > 3:
+        # For dynamic configs, show all keys (or reasonable limit)
+        MAX_REPR_KEYS = 20  # Show up to 20 keys before truncating
+        keys = list(data.keys())
+        
+        if len(keys) <= MAX_REPR_KEYS:
+            # Show all keys
+            key_str = ", ".join(f"{k}={data[k]!r}" for k in keys)
+        else:
+            # Truncate if too many
+            shown_keys = keys[:MAX_REPR_KEYS]
+            key_str = ", ".join(f"{k}={data[k]!r}" for k in shown_keys)
             key_str += f", ... ({len(data)} total)"
+        
         return f"{self.__class__.__name__}({key_str})"
 
     def __str__(self) -> str:

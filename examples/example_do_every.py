@@ -89,7 +89,9 @@ def main():
     # log_every: For rate-limiting logging specifically
     for step in range(20):
         with logger.log_every(every=5):
-            logger.info(f"log_every: Step {step}")  # Console output suppressed unless step % 5 == 0
+            logger.info(
+                f"log_every: Step {step}"
+            )  # Console output suppressed unless step % 5 == 0
 
     print()
 
@@ -97,7 +99,9 @@ def main():
     for step in range(20):
         with logger.do_every(every=5) as should_execute:
             if should_execute:
-                logger.info(f"do_every: Step {step}")  # Code only runs when should_execute is True
+                logger.info(
+                    f"do_every: Step {step}"
+                )  # Code only runs when should_execute is True
 
     logger.info("\n✅ do_every examples completed!")
     logger.close()

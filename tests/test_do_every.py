@@ -99,7 +99,9 @@ class TestDoEvery:
         """Test that either 'every' or 'seconds' must be specified."""
         logger = ExperimentLogger(run_dir=tmp_path)
 
-        with pytest.raises(ValueError, match="Must specify either 'every' or 'seconds'"):
+        with pytest.raises(
+            ValueError, match="Must specify either 'every' or 'seconds'"
+        ):
             with logger.do_every() as _:
                 pass
 
@@ -107,7 +109,9 @@ class TestDoEvery:
         """Test that 'every' and 'seconds' are mutually exclusive."""
         logger = ExperimentLogger(run_dir=tmp_path)
 
-        with pytest.raises(ValueError, match="Cannot specify both 'every' and 'seconds'"):
+        with pytest.raises(
+            ValueError, match="Cannot specify both 'every' and 'seconds'"
+        ):
             with logger.do_every(every=5, seconds=1.0) as _:
                 pass
 
