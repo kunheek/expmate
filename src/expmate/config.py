@@ -1056,7 +1056,7 @@ class Config:
         # For dynamic configs, show all keys (or reasonable limit)
         MAX_REPR_KEYS = 20  # Show up to 20 keys before truncating
         keys = list(data.keys())
-        
+
         if len(keys) <= MAX_REPR_KEYS:
             # Show all keys
             key_str = ", ".join(f"{k}={data[k]!r}" for k in keys)
@@ -1065,12 +1065,29 @@ class Config:
             shown_keys = keys[:MAX_REPR_KEYS]
             key_str = ", ".join(f"{k}={data[k]!r}" for k in shown_keys)
             key_str += f", ... ({len(data)} total)"
-        
+
         return f"{self.__class__.__name__}({key_str})"
 
     def __str__(self) -> str:
         """Return string representation of Config."""
         data = object.__getattribute__(self, "_data")
+
+        # For typed dataclasses, show field values even if _data is empty
+        if hasattr(self.__class__, "__dataclass_fields__"):
+            field_names = [
+                f.name for f in fields(self.__class__) if not f.name.startswith("_")
+            ]
+            if field_names:
+                lines = [f"{self.__class__.__name__}:"]
+                for name in field_names:
+                    try:
+                        value = getattr(self, name)
+                        lines.append(f"  {name}: {self._format_value(value, indent=2)}")
+                    except AttributeError:
+                        pass
+                return "\n".join(lines)
+
+        # For dynamic configs, check if data is empty
         if not data:
             return f"{self.__class__.__name__}()"
 
