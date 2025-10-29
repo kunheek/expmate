@@ -1,6 +1,6 @@
 # Makefile for ExpMate development
 
-.PHONY: help install install-dev test test-cov test-fast lint format clean
+.PHONY: help install install-dev test test-cov test-fast lint format clean doc doc-serve doc-deploy
 
 help:
 	@echo "ExpMate Development Commands"
@@ -12,6 +12,9 @@ help:
 	@echo "test-fast       - Run fast tests only (skip slow tests)"
 	@echo "lint            - Run linters (ruff, mypy)"
 	@echo "format          - Format code with black and ruff"
+	@echo "doc             - Build documentation locally"
+	@echo "doc-serve       - Serve documentation locally for preview"
+	@echo "doc-deploy      - Deploy documentation to GitHub Pages"
 	@echo "clean           - Remove build artifacts and cache files"
 
 install:
@@ -46,5 +49,15 @@ clean:
 	rm -rf htmlcov/
 	rm -rf .mypy_cache/
 	rm -rf .ruff_cache/
+	rm -rf site/
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
+
+doc:
+	mkdocs build
+
+doc-serve:
+	mkdocs serve
+
+doc-deploy:
+	mkdocs gh-deploy --force --clean
