@@ -552,6 +552,75 @@ class ExperimentLogger:
             self._current_stage = old_stage
 
     @contextmanager
+    def do_every(self, every: int = None, seconds: float = None, key: str = None):
+        """Context manager for rate-limited execution of any code.
+
+        Executes code block only every N iterations or every N seconds,
+        useful for reducing overhead in tight loops.
+
+        Args:
+            every: Execute every N iterations (mutually exclusive with seconds)
+            seconds: Execute every N seconds (mutually exclusive with every)
+            key: Unique key for this rate limiter (auto-generated if None)
+
+        Usage:
+            # Execute every 100 iterations
+            for step in range(10000):
+                loss = train_step()
+                with logger.do_every(every=100) as should_execute:
+                    if should_execute:
+                        save_checkpoint()
+
+            # Execute every 5 seconds
+            for batch in dataloader:
+                with logger.do_every(seconds=5.0) as should_execute:
+                    if should_execute:
+                        log_gpu_stats()
+
+            # Multiple rate limiters with different keys
+            for step in range(1000):
+                with logger.do_every(every=10, key="validation") as should_execute:
+                    if should_execute:
+                        validate()
+
+        Yields:
+            bool: True if code should execute, False if skipped
+        """
+        if every is None and seconds is None:
+            raise ValueError("Must specify either 'every' or 'seconds'")
+        if every is not None and seconds is not None:
+            raise ValueError("Cannot specify both 'every' and 'seconds'")
+
+        # Auto-generate key from caller location if not provided
+        if key is None:
+            frame = inspect.currentframe()
+            caller_frame = frame.f_back if frame else None
+            if caller_frame:
+                key = f"{caller_frame.f_code.co_filename}:{caller_frame.f_lineno}"
+            else:
+                key = "default"
+
+        should_execute = False
+
+        if every is not None:
+            # Iteration-based rate limiting
+            count = self._rate_limit_counters.get(key, 0)
+            self._rate_limit_counters[key] = count + 1
+
+            if count % every == 0:
+                should_execute = True
+        else:
+            # Time-based rate limiting
+            current_time = time.time()
+            last_execute_time = self._rate_limit_last_log.get(key, 0.0)
+
+            if current_time - last_execute_time >= seconds:
+                should_execute = True
+                self._rate_limit_last_log[key] = current_time
+
+        yield should_execute
+
+    @contextmanager
     def log_every(self, every: int = None, seconds: float = None, key: str = None):
         """Context manager for rate-limited logging.
 
@@ -585,54 +654,24 @@ class ExperimentLogger:
         Yields:
             bool: True if logging should occur, False if suppressed
         """
-        if every is None and seconds is None:
-            raise ValueError("Must specify either 'every' or 'seconds'")
-        if every is not None and seconds is not None:
-            raise ValueError("Cannot specify both 'every' and 'seconds'")
-
-        # Auto-generate key from caller location if not provided
-        if key is None:
-            frame = inspect.currentframe()
-            caller_frame = frame.f_back if frame else None
-            if caller_frame:
-                key = f"{caller_frame.f_code.co_filename}:{caller_frame.f_lineno}"
-            else:
-                key = "default"
-
-        should_log = False
-
-        if every is not None:
-            # Iteration-based rate limiting
-            count = self._rate_limit_counters.get(key, 0)
-            self._rate_limit_counters[key] = count + 1
-
-            if count % every == 0:
-                should_log = True
-        else:
-            # Time-based rate limiting
-            current_time = time.time()
-            last_log_time = self._rate_limit_last_log.get(key, 0.0)
-
-            if current_time - last_log_time >= seconds:
-                should_log = True
-                self._rate_limit_last_log[key] = current_time
-
-        # Temporarily suppress logging if not time to log
-        if not should_log and self.console_handler:
-            # Remove console handler temporarily
-            if self.console_handler in self.logger.handlers:
-                self.logger.removeHandler(self.console_handler)
-                try:
+        # Use do_every to determine if we should log
+        with self.do_every(every=every, seconds=seconds, key=key) as should_log:
+            # Temporarily suppress logging if not time to log
+            if not should_log and self.console_handler:
+                # Remove console handler temporarily
+                if self.console_handler in self.logger.handlers:
+                    self.logger.removeHandler(self.console_handler)
+                    try:
+                        yield should_log
+                    finally:
+                        # Restore console handler
+                        if self.console_handler not in self.logger.handlers:
+                            self.logger.addHandler(self.console_handler)
+                else:
+                    # Handler not present, just yield
                     yield should_log
-                finally:
-                    # Restore console handler
-                    if self.console_handler not in self.logger.handlers:
-                        self.logger.addHandler(self.console_handler)
             else:
-                # Handler not present, just yield
                 yield should_log
-        else:
-            yield should_log
 
     # Backward compatibility alias
     @contextmanager
